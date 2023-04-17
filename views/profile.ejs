@@ -1,0 +1,12 @@
+Welcome <%= locals.user.FirstName %>!
+<a href="/users/destroy-session">Sign out</a>
+
+<h3>Change Password</h3>
+
+<form action="/users/password/change" method="POST">
+    <input type="password" name="old_password" placeholder="Old Password">
+    <input type="password" name="new_password" placeholder="New Password">
+    <input type="password" name="confirm_password" placeholder="Confirm Password">
+    <input type="hidden" name="user_id" value="<%= locals.user._id %>">
+    <button>Change Password</button>
+</form>
