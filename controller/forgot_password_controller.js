@@ -63,24 +63,33 @@ module.exports.passwordReset = function(req, res){
         if(req.body.email == undefined){
             return res.redirect('/users/sign-in');
         }
-        let pass = crypto.randomBytes(20).toString('hex');
-
-    User.findOneAndUpdate({email : req.body.email},{password: pass}, { "new": true}, function(err, user){
-        if(err){
-            console.log('error in password forgot', err);
-            return;
-        }
-            if(user){
-                
-                let job = queue.create('forgotPass-emails', user).save(function(err){
-                    if(err){
-                        console.log('error in creating a queue', err);
+        const pass = crypto.randomBytes(20).toString('hex');
+        let hashPassword = new Promise((resolve, reject) => {
+            bcrypt.hash(pass, saltRounds, (err, hash) => {
+                if(err) reject(err);
+                resolve(hash);
+            });
+        });
+        hashPassword.then((resultant_hash) => {
+            User.findOneAndUpdate({email : req.body.email},{password: resultant_hash}, { "new": true}, function(err, user){
+                if(err){
+                    console.log('error in password forgot', err);
+                    return;
+                }
+                    if(user){
+                        const sending_user = {
+                            pass : pass, ...user
+                        };
+                        
+                        let job = queue.create('forgotPass-emails', sending_user).save(function(err){
+                            if(err){
+                                console.log('error in creating a queue', err);
+                            }
+                            
+                        })
                     }
+                        return res.redirect('/users/sign-in');
                     
-                })
-            }
-                return res.redirect('/users/sign-in');
-            
-    });
-
+            });
+        });
 }
