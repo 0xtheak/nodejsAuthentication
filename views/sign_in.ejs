@@ -1,21 +1,21 @@
-<div class="create-account">
+<div class="sign-in-container">
     <h2>Login</h2>
     <form action="/users/create-session" method="POST">
       <div class="form-group">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
+        <label for="email">Email:</label>
+        <input type="email" name="email" placeholder="Email" required>
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" name="password" placeholder="Password" required>
       </div>
       <div class="form-group">
         <input type="submit" value="Sign In">
       </div>
-      
     </form>
+    <p>Didn't have an account?<a href="/users/sign-up"> Click here to create account</a></p>
     <div class="google-authentication">
-        <a href="/users/auth/google">google sign In/Up</a>
+        <a href="/users/auth/google">Login with google</a>
     </div>
     <div class="form-group forgot-password">
         <a href="/users/password/forgot">Forgot password?</a>

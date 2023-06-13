@@ -1,12 +1,24 @@
-Welcome <%= locals.user.FirstName %>!
-<a href="/users/destroy-session">Sign out</a>
+<h3 id="welcome-greet">Welcome <%= locals.user.FirstName %>!</h3>
 
-<h3>Change Password</h3>
-
-<form action="/users/password/change" method="POST">
-    <input type="password" name="old_password" placeholder="Old Password" required>
-    <input type="password" name="new_password" placeholder="New Password" required>
-    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
-    <input type="hidden" name="user_id" value="<%= locals.user._id %>">
-    <button>Change Password</button>
-</form>
+<div class="pass-change-container">
+    <h2>Change Password</h2>
+    <form action="/users/password/change" method="POST">
+      <div class="form-group">
+        <label for="old_password">Current Password</label>
+        <input type="password" name="old_password" placeholder="Old Password" required>
+      </div>
+      <div class="form-group">
+        <label for="new_password">New Password</label>
+        <input type="password" name="new_password" placeholder="New Password" required>
+      </div>
+      <div class="form-group">
+        <label for="confirm_password">Confirm Password</label>
+        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+      </div>
+      <input type="hidden" name="user_id" value="<%= locals.user._id %>">
+      <div class="form-group">
+        <input type="submit" value="Change Password">
+      </div>
+    </form>
+   
+  </div>

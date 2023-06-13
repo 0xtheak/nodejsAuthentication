@@ -2,7 +2,7 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-
+// render profile page
 module.exports.profile =  function(req, res){
     return res.render('profile', {
                         title : 'Profile',
@@ -56,7 +56,7 @@ module.exports.create = async function(req, res){
                         email : req.body.email,
                         password : result
                     });
-                    console.log(newUser);
+                    req.flash('success', 'Account created successfully');
                     return res.redirect('/users/sign-in');
                 }
                 

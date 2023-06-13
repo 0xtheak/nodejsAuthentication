@@ -1,5 +1,30 @@
 <% if(!locals.user) {%>
-    <header>
-        <a href="/">Home</a>
-    </header>    
+    <div id="header-nav">
+        <header>
+            <nav>
+                <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/users/sign-in">Sign In</a></li>
+                  <li><a href="/users/sign-up">Sign Up</a></li>
+                  <li><a href="#">Contact</a></li>
+                </ul>
+              </nav>
+        </header>
+    </div>
+    
+
 <% } %>
+
+<% if(locals.user) {%>
+    <div id="sign-out-nav">
+        <header>
+            <nav>
+                <ul>
+                  <li><a href="/users/destroy-session">Sign Out</a></li>
+                </ul>
+              </nav>
+        </header>
+    </div>
+    
+<% } %>
+

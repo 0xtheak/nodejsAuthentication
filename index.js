@@ -12,8 +12,16 @@ const passportGoogle = require('./config/passport-google-oauth2-strategy');
 const passportJWT = require('./config/passport-jwt-strategy');
 const flash = require('connect-flash');
 const customMWare = require('./config/middleware');
+const sassMiddleware = require('node-sass-middleware');
 
+app.use(sassMiddleware({
+    src : './assets/scss',
+    dest : './assets/css',
+    debug : true,
+    outputStyle : 'extended',
+    prefix : '/css'
 
+}));
 app.use(expressLayouts);
 app.use(express.urlencoded({extended : true}));
 app.use(cookieParser());
@@ -44,7 +52,7 @@ app.use(session({
         }
      })
 }));
-app.set("layout home", false);
+app.set("home", false);
 
 app.use(passport.initialize());
 app.use(passport.session());

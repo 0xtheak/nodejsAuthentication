@@ -1,4 +1,4 @@
-<div id="create-account">
+<!-- <div id="create-account">
     <h1>Sign Up</h1>
     <p>Already have an account?<a href="/users/sign-in">Click here to login</a></p>
 </div>
@@ -14,4 +14,40 @@
 </form>
 <p>
     <a href="/users/auth/google">google sign In/Up</a>
-</p>
+</p> -->
+
+<div class="sign-up-container">
+    <h2>Create Account</h2>
+    <form action="/users/create" method="POST">
+      <div class="form-group">
+        <label for="FirstName">First Name:</label>
+        <input type="text" name="FirstName" placeholder="First Name" required>
+      </div>
+      <div class="form-group">
+        <label for="LastName">Last Name:</label>
+        <input type="text" name="LastName" placeholder="Last Name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" placeholder="Email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="Password" required>
+      </div>
+      <div class="form-group">
+        <label for="confirm_password">Confirm Password</label>
+        <input type="password" name="confirm_password" placeholder="Password" required>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Sign Up">
+      </div>
+    </form>
+    <p>Already have an account?<a href="/users/sign-in"> Click here to login</a></p>
+    <div class="google-authentication">
+        <a href="/users/auth/google">Login with google</a>
+    </div>
+    <div class="form-group forgot-password">
+        <a href="/users/password/forgot">Forgot password?</a>
+      </div>
+  </div>
