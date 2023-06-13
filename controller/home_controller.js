@@ -1,5 +1,4 @@
 const user = require('../models/user');
-// const {spawn} = require('child_process');
 
 
 module.exports.home = function(req, res){
@@ -8,6 +7,7 @@ module.exports.home = function(req, res){
   }
     
     return res.render('home', {
-        title : 'Home Page | Nodejs Authentication'
+        title : 'Home Page | Nodejs Authentication',
+        layout : 'home',
     });
 }

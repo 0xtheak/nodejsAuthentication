@@ -34,13 +34,13 @@ module.exports.signIn = function(req, res){
 // user sign up
 module.exports.create = async function(req, res){
     try{
-        // console.log(req.body);
+        
         if(req.body.password != req.body.confirm_password){
             return res.redirect('back');
         }
 
         let user = await User.findOne({email : req.body.email});
-        // console.log(user);
+        
         if(!user){
             let hashPassword = new Promise((resolve, reject) => {
                 bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
@@ -68,7 +68,6 @@ module.exports.create = async function(req, res){
         
     }catch(err){
         if(err){
-            console.log(err);
             return;  
         }
         return res.redirect('back');
@@ -77,38 +76,7 @@ module.exports.create = async function(req, res){
 }
 
 module.exports.createSession = async function(req, res){
-    
-
-    // try{
-    //     if(req.body.email == undefined){
-    //         return res.status(401).json({
-    //             message : "parameter missing"
-    //         });
-    //     }
-
-    //     let user = await User.findOne({email : req.body.email});
-    //     if(user){
-            
-    //         if(user.password!=req.body.password){
-    //             return res.status(401).json({
-    //                 message : "Invalid Email/Password"
-    //             });
-    //         }else {
-                
-    //             res.cookie('user_id', user.id);
-    //             return res.redirect('/users/profile');
-    //         }
-    //     }else{
-    //         return res.redirect('back');
-    //     }
-    // }catch(err){
-    //     if(err){
-    //         console.log(err);
-    //     }
-    //     return res.status(401).json({
-    //         message : "Internal server error"
-    //     });
-    // }
+    req.flash('success', 'Logged in successfully');
     return res.redirect('/users/profile');
 
 }
@@ -117,10 +85,10 @@ module.exports.createSession = async function(req, res){
 module.exports.destroySession = function(req, res){
     req.logout((err) => {
         if(err){
-            console.log('Failed to sign out');
+            
             return next(err);
         }
-        // req.flash('success', 'You Have Logged out!');
+        req.flash('success', 'You Have Logged out!');
         return res.redirect('/users/sign-in');
     });
 }

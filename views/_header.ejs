@@ -1,3 +1,5 @@
-<header>
-    page header
-</header>
+<% if(!locals.user) {%>
+    <header>
+        <a href="/">Home</a>
+    </header>    
+<% } %>

@@ -1,17 +1,23 @@
-<div id="create-account">
-    <h1>Login</h1>
-    <p>Doesn't have an account?<a href="/users/sign-up">Create an account now</a></p>
-</div>
-
-<form action="/users/create-session" method="POST">
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <button>Sign In</button>
-</form>
-<p>
-    <a href="/users/auth/google">google sign In/Up</a>
-</p>
-
-<h3><a href="/users/password/forgot">Forgot your password</a></h3>
-<!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<div class="g-recaptcha" data-sitekey="your_site_key"></div>  -->
+<div class="create-account">
+    <h2>Login</h2>
+    <form action="/users/create-session" method="POST">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Sign In">
+      </div>
+      
+    </form>
+    <div class="google-authentication">
+        <a href="/users/auth/google">google sign In/Up</a>
+    </div>
+    <div class="form-group forgot-password">
+        <a href="/users/password/forgot">Forgot password?</a>
+      </div>
+  </div>

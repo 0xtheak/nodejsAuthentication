@@ -13,15 +13,15 @@ module.exports.passwordChange = function(req, res){
     const userId = req.body.user_id;
     if(req.body.new_password !== req.body.confirm_password){
         console.log('from profile');
+        req.flash('error', 'New password and confirm is not matching');
         return res.redirect('back');
     }
     User.findById(userId, (err, user)=> {
         if(err){
-            console.log('error in password change', err);
+            req.flash('error', 'error in password change');
             return;
         }
         if(user){
-            console.log(user);
             bcrypt.compare(req.body.old_password, user.password, function(err, result){
                 if(result){
 
@@ -43,6 +43,7 @@ module.exports.passwordChange = function(req, res){
         }
         
     });
+    req.flash('success', 'Password changed successfully!');
     return res.redirect('back');
 }
 
@@ -73,7 +74,7 @@ module.exports.passwordReset = function(req, res){
         hashPassword.then((resultant_hash) => {
             User.findOneAndUpdate({email : req.body.email},{password: resultant_hash}, { "new": true}, function(err, user){
                 if(err){
-                    console.log('error in password forgot', err);
+                    req.flash('error', 'Error in password forgot');
                     return;
                 }
                     if(user){
@@ -83,11 +84,12 @@ module.exports.passwordReset = function(req, res){
                         
                         let job = queue.create('forgotPass-emails', sending_user).save(function(err){
                             if(err){
-                                console.log('error in creating a queue', err);
+                                return;
                             }
                             
                         })
                     }
+                        req.flash('success', 'New password has been sent on your mail');
                         return res.redirect('/users/sign-in');
                     
             });

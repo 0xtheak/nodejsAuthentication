@@ -10,6 +10,8 @@ const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const passportGoogle = require('./config/passport-google-oauth2-strategy');
 const passportJWT = require('./config/passport-jwt-strategy');
+const flash = require('connect-flash');
+const customMWare = require('./config/middleware');
 
 
 app.use(expressLayouts);
@@ -23,9 +25,9 @@ app.use(express.static('./assets'));
 
 
 app.use(session({
-    name : process.env.SessionSecret,
+    name : process.env.SessionSecretName,
     // TODO change the secret before deployment in production mode
-    secret : 'blahsomething',
+    secret : process.env.SessionSecret,
     saveUninitialized : false,
     resave : false,
     cookie : {
@@ -42,10 +44,13 @@ app.use(session({
         }
      })
 }));
+app.set("layout home", false);
 
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
+app.use(flash());
+app.use(customMWare.setFalsh);
 
 app.use('/', require('./routes'));
 

@@ -22,10 +22,12 @@ passport.use(new LocalStrategy({
                     if(result){
                         return done(null, user);
                     }
+                    req.flash('error', 'Invalid credentials');
                     return done(null, false);
                     
                 });
             }else{
+                req.flash('error', 'Invalid credentials');
                 return done(null, false);
             }
             
@@ -61,6 +63,7 @@ passport.checkAuthetication = function(req, res, next){
         return next();
     }
 
+    req.flash('error', 'Please Sign in first');
     // if the user is not sign in
     return res.redirect('/users/sign-in');
 }
