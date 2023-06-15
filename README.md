@@ -57,7 +57,7 @@ Usage
 
     Register a new user by providing an email and password.
     Log in with the registered email and password.
-    Alternatively, click on the Google buttons to log in using social media accounts.
+    Alternatively, click on the Login with Google buttons to log in using google accounts.
 
 Dependencies
 
@@ -66,8 +66,7 @@ The app uses the following major dependencies:
     Express: Fast, unopinionated, minimalist web framework for Node.js.
     Passport: Simple, unobtrusive authentication middleware for Node.js.
     Passport-local: Passport strategy for authenticating with a username and password.
-    Passport-facebook: Passport strategy for authenticating with Facebook.
-    Passport-google-oauth20: Passport strategy for authenticating with Google using OAuth 2.0.
+    Passport-google-oauth: Passport strategy for authenticating with Google using OAuth 2.0.
 
 For a full list of dependencies, please refer to the package.json file.
 Contributing
