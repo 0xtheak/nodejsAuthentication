@@ -30,8 +30,9 @@ npm install
 
 Set up environment variables:
 
-    Rename the .env.example file to .env
-    Replace the placeholders with your own configuration details for social login (e.g., Google client ID and secret).
+    Create .env file
+    Put the placeholders with your own configuration details for social login (e.g., Google client ID and secret).
+    below are all the variables used in the project
     smptMail=''
     smtpMailPass=''
     mongoDBUrl=''
