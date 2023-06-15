@@ -42,6 +42,7 @@ module.exports.create = async function(req, res){
         let user = await User.findOne({email : req.body.email});
         
         if(!user){
+            // creating the hash from user supplied password
             let hashPassword = new Promise((resolve, reject) => {
                 bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
                     if(err) reject(err);
@@ -75,13 +76,14 @@ module.exports.create = async function(req, res){
     }
 }
 
+// session create after the signin
 module.exports.createSession = async function(req, res){
     req.flash('success', 'Logged in successfully');
     return res.redirect('/users/profile');
 
 }
 
-
+// session destroy after the signout 
 module.exports.destroySession = function(req, res){
     req.logout((err) => {
         if(err){

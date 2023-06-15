@@ -65,6 +65,7 @@ The app uses the following major dependencies:
     Express: Fast, unopinionated, minimalist web framework for Node.js.
     Passport: Simple, unobtrusive authentication middleware for Node.js.
     Passport-local: Passport strategy for authenticating with a username and password.
+    Passport-facebook: Passport strategy for authenticating with Facebook.
     Passport-google-oauth20: Passport strategy for authenticating with Google using OAuth 2.0.
 
 For a full list of dependencies, please refer to the package.json file.

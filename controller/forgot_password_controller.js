@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 
-
+// password change
 module.exports.passwordChange = function(req, res){
     console.log(req.body);
     const userId = req.body.user_id;
@@ -47,6 +47,8 @@ module.exports.passwordChange = function(req, res){
     return res.redirect('back');
 }
 
+
+// password forgot page rendering
 module.exports.forgotPassword = function(req, res){
     if(req.isAuthenticated()){
         return res.redirect('/users/profile');
@@ -58,6 +60,7 @@ module.exports.forgotPassword = function(req, res){
 
 }
 
+// forgot password mechanism
 module.exports.passwordReset = function(req, res){
     
         
@@ -84,7 +87,8 @@ module.exports.passwordReset = function(req, res){
                         
                         let job = queue.create('forgotPass-emails', sending_user).save(function(err){
                             if(err){
-                                return;
+                                req.flash('error', 'Error in password forgot');
+                                return res.redirect('/users/sign-in');;
                             }
                             
                         })
